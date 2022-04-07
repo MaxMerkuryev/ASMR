@@ -12,12 +12,14 @@ GameObject:
   - component: {fileID: 5941688397231140212}
   - component: {fileID: 24387318052258926}
   - component: {fileID: 1114897322855144355}
-  - component: {fileID: 8976326135222570503}
-  - component: {fileID: -8800026059175798655}
+  - component: {fileID: 3048407147155282717}
+  - component: {fileID: 6897501135939363523}
+  - component: {fileID: 3507012165980218399}
+  - component: {fileID: 2777789195932017065}
   m_Layer: 0
-  m_Name: TilePopUp
+  m_Name: TileExplosive
   m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -97,7 +99,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8976326135222570503
+--- !u!114 &3048407147155282717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,10 +108,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 4589482657910347975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d997ba90392e42519c3fd42ba1c47309, type: 3}
+  m_Script: {fileID: 11500000, guid: a2bbb3148cd349f590eeec64e1b91c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8800026059175798655
+  ExplodeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6897501135939363523}
+        m_TargetAssemblyTypeName: Misc.Spawner, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1480620363877827603, guid: a1496efcc2e22f349abd1547030bb8fe, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2777789195932017065}
+        m_TargetAssemblyTypeName: CameraShake.CameraShakeTrigger, Assembly-CSharp
+        m_MethodName: Invoke
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _chargingTime: 5
+  _resettingTime: 1
+--- !u!114 &6897501135939363523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589482657910347975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d9f14143c04f6ea2d95948b7e8e3ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3507012165980218399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,4 +164,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a494778e2b4be6bd3e7ede6422eae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 0, g: 0.4457605, b: 1, a: 1}
+  _color: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &2777789195932017065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589482657910347975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01918610f83c461c918a89ee0e6afa67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

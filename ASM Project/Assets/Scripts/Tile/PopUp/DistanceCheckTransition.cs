@@ -4,24 +4,24 @@ using UnityEngine;
 
 namespace Tile
 {
-	public abstract class DistanceCheckSubState : SubState
+	public abstract class DistanceCheckTransition : Transition
 	{
 		private Transform _origin;
 		protected const float _maxDistance = 15f;
 
-		protected DistanceCheckSubState(Transform origin) => _origin = origin;
+		protected DistanceCheckTransition(Transform origin) => _origin = origin;
 		protected float DistanceToPlayer => Vector3.Distance(_origin.position, PlayerController.Position);
 	}
 	
-	public class PlayerIsFarSubState : DistanceCheckSubState
+	public class PlayerIsFarTransition : DistanceCheckTransition
 	{
-		public PlayerIsFarSubState(Transform origin) : base(origin){}
+		public PlayerIsFarTransition(Transform origin) : base(origin){}
 		public override bool Update() => DistanceToPlayer > _maxDistance;
 	}
 	
-	public class PlayerIsCloseSubState : DistanceCheckSubState
+	public class PlayerIsCloseTransition : DistanceCheckTransition
 	{
-		public PlayerIsCloseSubState(Transform origin) : base(origin){}
+		public PlayerIsCloseTransition(Transform origin) : base(origin){}
 		public override bool Update() => DistanceToPlayer <= _maxDistance;
 	}
 }

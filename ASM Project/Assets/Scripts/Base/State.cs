@@ -6,11 +6,11 @@ namespace ASM
 {
 	public abstract class State
 	{
-		private Dictionary<SubState, Action> _transitions = new Dictionary<SubState, Action>();
+		private Dictionary<Transition, Action> _transitions = new Dictionary<Transition, Action>();
 
-		public void AddTransition(SubState subState, Action callback)
+		public void AddTransition(Transition transition, Action callback)
 		{
-			_transitions.Add(subState, callback);
+			_transitions.Add(transition, callback);
 		}
 
 		public virtual void Enter()

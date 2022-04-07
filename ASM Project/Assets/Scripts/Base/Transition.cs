@@ -1,6 +1,6 @@
 namespace ASM
 {
-	public abstract class SubState
+	public abstract class Transition
 	{
 		public virtual void Enter(){}
 		public virtual void Exit(){}

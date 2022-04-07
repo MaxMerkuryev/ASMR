@@ -10,8 +10,8 @@ namespace Tile
 			State visibleState = new TileVisibleState(transform);
 			State hiddenState = new TileHiddenState(transform);
 
-			SubState playerIsFar = new PlayerIsFarSubState(transform);
-			SubState playerIsClose = new PlayerIsCloseSubState(transform);
+			Transition playerIsFar = new PlayerIsFarTransition(transform);
+			Transition playerIsClose = new PlayerIsCloseTransition(transform);
 			
 			visibleState.AddTransition(playerIsFar, () => SetState(hiddenState));
 			hiddenState.AddTransition(playerIsClose, () => SetState(visibleState));
