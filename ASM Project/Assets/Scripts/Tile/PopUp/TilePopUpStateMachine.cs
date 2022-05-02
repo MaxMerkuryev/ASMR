@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ASM;
 
 namespace Tile
@@ -13,10 +14,11 @@ namespace Tile
 			Transition playerIsFar = new PlayerIsFarTransition(transform);
 			Transition playerIsClose = new PlayerIsCloseTransition(transform);
 			
-			visibleState.AddTransition(playerIsFar, () => SetState(hiddenState));
-			hiddenState.AddTransition(playerIsClose, () => SetState(visibleState));
-			
-			SetState(hiddenState);
+			Init(initialState: hiddenState, states: new()
+			{
+				{visibleState, new() {{playerIsFar, hiddenState}}},
+				{hiddenState, new() {{playerIsClose, visibleState}}}
+			});
 		}
 	}
 }

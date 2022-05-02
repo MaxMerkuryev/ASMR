@@ -6,18 +6,18 @@ namespace ASM
 {
 	public abstract class State
 	{
-		private Dictionary<Transition, Action> _transitions = new Dictionary<Transition, Action>();
+		private List<Transition> _transitions = new();
 
-		public void AddTransition(Transition transition, Action callback)
+		public void AddTransition(Transition transition)
 		{
-			_transitions.Add(transition, callback);
+			_transitions.Add(transition);
 		}
 
 		public virtual void Enter()
 		{
 			for (int i = 0; i < _transitions.Count; i++)
 			{
-				_transitions.ElementAt(i).Key.Enter();
+				_transitions[i].Enter();
 			}
 		}
 		
@@ -25,7 +25,7 @@ namespace ASM
 		{
 			for (int i = 0; i < _transitions.Count; i++)
 			{
-				_transitions.ElementAt(i).Key.Exit();
+				_transitions[i].Exit();
 			}
 		}
 		
@@ -33,10 +33,7 @@ namespace ASM
 		{
 			for (int i = 0; i < _transitions.Count; i++)
 			{
-				if (_transitions.ElementAt(i).Key.Update())
-				{
-					_transitions.ElementAt(i).Value?.Invoke();
-				}
+				_transitions[i].Update();
 			}
 		}
 	}

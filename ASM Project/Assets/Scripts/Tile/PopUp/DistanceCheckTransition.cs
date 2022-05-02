@@ -16,12 +16,12 @@ namespace Tile
 	public class PlayerIsFarTransition : DistanceCheckTransition
 	{
 		public PlayerIsFarTransition(Transform origin) : base(origin){}
-		public override bool Update() => DistanceToPlayer > _maxDistance;
+		public override bool CheckCondition() => DistanceToPlayer > _maxDistance;
 	}
 	
 	public class PlayerIsCloseTransition : DistanceCheckTransition
 	{
 		public PlayerIsCloseTransition(Transform origin) : base(origin){}
-		public override bool Update() => DistanceToPlayer <= _maxDistance;
+		public override bool CheckCondition() => DistanceToPlayer <= _maxDistance;
 	}
 }

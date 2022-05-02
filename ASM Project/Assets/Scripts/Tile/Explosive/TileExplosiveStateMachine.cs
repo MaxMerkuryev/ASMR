@@ -22,15 +22,23 @@ namespace Tile.Explosive
 			Transition chargingTransition = new ChargingTransition(GetComponent<MeshRenderer>(), _chargingTime);
 			Transition resettingTransition = new TimeoutTransition(_resettingTime);
 			
-			hiddenState.AddTransition(playerIsCloseTransition, () => SetState(visibleState));
-
-			visibleState.AddTransition(playerIsFarTransition, () => SetState(hiddenState));
-			visibleState.AddTransition(chargingTransition, () => SetState(explodedState));
-			
-			explodedState.AddTransition(resettingTransition, () => SetState(hiddenState));
-			explodedState.AddTransition(playerIsFarTransition, () => SetState(hiddenState));
-			
-			SetState(hiddenState);
+			Init(initialState: hiddenState, states: new()
+			{
+				{hiddenState, new()
+				{
+					{playerIsCloseTransition, visibleState}
+				}},
+				{visibleState, new()
+				{
+					{playerIsFarTransition, hiddenState},
+					{chargingTransition, explodedState}
+				}},
+				{explodedState, new()
+				{
+					{resettingTransition, hiddenState},
+					{playerIsFarTransition, hiddenState}
+				}}
+			});
 		}
 	}
 }

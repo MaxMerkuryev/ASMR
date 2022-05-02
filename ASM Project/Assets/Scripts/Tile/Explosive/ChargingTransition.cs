@@ -31,12 +31,12 @@ namespace Tile.Explosive
 			_renderer.material.DisableKeyword(EmissionColorKey);
 		}
 
-		public override bool Update()
+		public override bool CheckCondition()
 		{
 			var intensity = Mathf.Lerp(0f, 7f, Progress);
 			_renderer.material.SetColor(EmissionColor, Color.red * intensity);
 
-			return base.Update();
+			return base.CheckCondition();
 		}
 	}
 }

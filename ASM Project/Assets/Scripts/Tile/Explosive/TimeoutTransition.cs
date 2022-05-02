@@ -13,6 +13,6 @@ namespace Tile.Explosive
 		public float Progress => 1f - _currentTime / _maxTime;
 		
 		public override void Enter() => _currentTime = _maxTime;
-		public override bool Update() => (_currentTime -= Time.deltaTime) <= 0f;
+		public override bool CheckCondition() => (_currentTime -= Time.deltaTime) <= 0f;
 	}
 }
