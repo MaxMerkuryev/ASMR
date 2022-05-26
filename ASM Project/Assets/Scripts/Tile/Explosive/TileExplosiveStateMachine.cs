@@ -1,5 +1,4 @@
-﻿using System;
-using ASM;
+﻿using ASM;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,30 +12,30 @@ namespace Tile.Explosive
 
 		private void Awake()
 		{
-			State hiddenState = new TileHiddenState(transform);
-			State visibleState = new TileVisibleState(transform);
+			State hiddenState = new HiddenState(transform);
+			State visibleState = new VisibleState(transform);
 			State explodedState = new ExplodedState(ExplodeEvent, transform);
 
-			Transition playerIsFarTransition = new PlayerIsFarTransition(transform);
-			Transition playerIsCloseTransition = new PlayerIsCloseTransition(transform);
-			Transition chargingTransition = new ChargingTransition(GetComponent<MeshRenderer>(), _chargingTime);
-			Transition resettingTransition = new TimeoutTransition(_resettingTime);
+			Transition playerIsFar = new PlayerIsFar(transform);
+			Transition playerIsClose = new PlayerIsClose(transform);
+			Transition charged = new ChargingTransition(GetComponent<MeshRenderer>(), _chargingTime);
+			Transition resetted = new TimerTransition(_resettingTime);
 			
 			Init(initialState: hiddenState, states: new()
 			{
 				{hiddenState, new()
 				{
-					{playerIsCloseTransition, visibleState}
+					{playerIsClose, visibleState}
 				}},
 				{visibleState, new()
 				{
-					{playerIsFarTransition, hiddenState},
-					{chargingTransition, explodedState}
+					{playerIsFar, hiddenState},
+					{charged, explodedState}
 				}},
 				{explodedState, new()
 				{
-					{resettingTransition, hiddenState},
-					{playerIsFarTransition, hiddenState}
+					{resetted, hiddenState},
+					{playerIsFar, hiddenState}
 				}}
 			});
 		}

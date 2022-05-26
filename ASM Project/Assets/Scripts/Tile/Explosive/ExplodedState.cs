@@ -1,21 +1,20 @@
-﻿using ASM;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace Tile.Explosive
 {
-	public class ExplodedState : TileHiddenState
+	public class ExplodedState : HiddenState
 	{
-		private UnityEvent ExplodeEvent;
+		private UnityEvent _event;
 
-		public ExplodedState(UnityEvent explodeEvent, Transform transform) : base(transform)
+		public ExplodedState(UnityEvent @event, Transform transform) : base(transform)
 		{
-			ExplodeEvent = explodeEvent;
+			_event = @event;
 		}
 
 		public override void Enter()
 		{
-			ExplodeEvent?.Invoke();
+			_event?.Invoke();
 			base.Enter();
 		}
 	}

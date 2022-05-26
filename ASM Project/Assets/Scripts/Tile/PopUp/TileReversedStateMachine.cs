@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using ASM;
+﻿using ASM;
 
 namespace Tile
 {
-	public class TilePopUpStateMachine : StateMachine
+	public class TileReversedStateMachine : StateMachine
 	{
 		private void Awake()
 		{
@@ -16,8 +14,8 @@ namespace Tile
 			
 			Init(initialState: hiddenState, states: new()
 			{
-				{visibleState, new() {{playerIsFar, hiddenState}}},
-				{hiddenState, new() {{playerIsClose, visibleState}}}
+				{visibleState, new() {{playerIsClose, hiddenState}}},
+				{hiddenState, new() {{playerIsFar, visibleState}}}
 			});
 		}
 	}

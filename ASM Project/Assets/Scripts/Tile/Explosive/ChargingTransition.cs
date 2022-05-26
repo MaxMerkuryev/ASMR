@@ -2,7 +2,7 @@
 
 namespace Tile.Explosive
 {
-	public class ChargingTransition : TimeoutTransition
+	public class ChargingTransition : TimerTransition
 	{
 		private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
 		private static readonly int MainColor = Shader.PropertyToID("_Color");
