@@ -4,11 +4,10 @@ namespace ASM
 {
 	public abstract class Transition
 	{
+		public Action Callback;
+		
 		public abstract bool CheckCondition();
-		
-		private Action _callback;
-		public void AddCallback(Action callback) => _callback = callback;
-		
+
 		public virtual void Enter(){}
 		public virtual void Exit(){}
 		
@@ -16,9 +15,9 @@ namespace ASM
 		{
 			if (!CheckCondition()) return;
 
-			if (_callback != null)
+			if (Callback != null)
 			{
-				_callback.Invoke();
+				Callback.Invoke();
 			}
 			else
 			{

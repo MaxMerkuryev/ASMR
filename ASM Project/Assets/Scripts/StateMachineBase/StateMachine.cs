@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace ASM
@@ -24,7 +22,7 @@ namespace ASM
 			{
 				foreach (var transition in state.Value)
 				{
-					transition.Key.AddCallback(() => SetState(transition.Value));
+					transition.Key.Callback = () => SetState(transition.Value);
 					state.Key.AddTransition(transition.Key);
 				}
 			}
